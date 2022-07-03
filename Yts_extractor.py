@@ -24,12 +24,6 @@ while cont < num_pages:
 
         soup = BeautifulSoup(html,'html.parser')
         movies = soup.find_all(class_="browse-movie-wrap col-xs-10 col-sm-4 col-md-5 col-lg-4")
-        '''listas temporarias que serão geradas a cada pagina:
-        (Não estamos usando .append() em uma lista existente) Porque queremos ir salvando no excel
-        durante o LOOP, sem ocupar muita memoria... se formos adicionando a uma list,a acumulando dados,
-        e gerar o excel apenas depois do loop, vamos ter muita info na memoria e se travar durante o processo,
-        nao teremos nenhum dado consolidado...
-        Do jeito que está pelo menos se por exemplo travar na pagin a 10, ja tera 10 paginas no arquivo..'''
         movie_title = [movie.find(class_="browse-movie-title").get_text() for movie in movies]
         movie_year = [movie.find(class_="browse-movie-year").get_text() for movie in movies]
         movie_link = [movie.find(class_="browse-movie-link").get('href') for movie in movies]
